@@ -20,10 +20,10 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::class,
-                'only' => ['logout'],
+                'only' => ['index',],
                 'rules' => [
                     [
-                        'actions' => ['logout'],
+                        'actions' => ['index'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -71,6 +71,8 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
+        $this->layout = 'main-login';
+
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
@@ -81,7 +83,7 @@ class SiteController extends Controller
         }
 
         $model->password = '';
-        return $this->render('login', [
+        return $this->render('login-2', [
             'model' => $model,
         ]);
     }

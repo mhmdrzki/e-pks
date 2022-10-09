@@ -42,18 +42,18 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => '@w
         'options' => ['class' => 'navbar-nav ml-auto'],
         'items' => [
             ['label' => 'Home', 'url' => ['/site'],'active' => in_array(\Yii::$app->controller->id, ['site'])],
-            ['label' => 'Dokumen', 'url' => ['/dokumen-pks'],'active' => in_array(\Yii::$app->controller->id, ['dokumen-pks'])],
-            Yii::$app->user->isGuest
-                ? ['label' => 'Login', 'url' => ['/site/login']]
-                : '<li class="nav-item">'
-                    . Html::beginForm('/site/logout','post')
-                    . Html::submitButton(
-                        'Logout (' . Yii::$app->user->identity->username . ')',
-                        ['class' => 'btn btn-link logout']
-                    )
-                    . Html::endForm()
-                    . '</li>'
-        ]
+            Yii::$app->user->isGuest ? ['label' => false]
+            : ['label' => 'Dokumen', 'url' => ['/dokumen-pks'],'active' => in_array(\Yii::$app->controller->id, ['dokumen-pks'])],
+            Yii::$app->user->isGuest ? ['label' => 'Login', 'url' => ['/site/login']]
+            : '<li class="nav-item">'
+                . Html::beginForm(['/site/logout'],'post')
+                . Html::submitButton(
+                'Logout (' . Yii::$app->user->identity->username . ')',
+                ['class' => 'btn btn-link logout ml-1 pl-0']
+                )
+                . Html::endForm()
+                . '</li>'
+            ]
     ]);
     NavBar::end();
     ?>
@@ -71,8 +71,8 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => '@w
 <footer id="footer" class="mt-auto py-3 bg-light">
     <div class="container">
         <div class="row text-muted">
-            <div class="col-md-6 text-center text-md-start">&copy; My Company <?= date('Y') ?></div>
-            <div class="col-md-6 text-center text-md-end"><?= Yii::powered() ?></div>
+            <div class="col-md-6 text-center text-md-start">&copy; e-PKS <?= date('Y') ?></div>
+            <div class="col-md-6 text-center text-md-end">Powered by <a href="https://www.linkedin.com/in/mhmdrzki/">Bangkii</a></div>
         </div>
     </div>
 </footer>

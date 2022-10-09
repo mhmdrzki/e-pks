@@ -24,11 +24,17 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
-        // 'rowOptions' => function ($model) {
-        //     if ($model->id == '1') {
-        //         return ['class' => 'bg-danger'];
-        //     }
-        // },
+        'options' => ['style' => 'font-size:12px;'],
+        'rowOptions' => function ($model) {
+            $tglAkhir = $model->tgl_berakhir_pks;;
+            $dateNow = date("Y-m-d");
+            $time = strtotime($dateNow);
+            $final = date("Y-m-d", strtotime("-4 day", $time));
+            
+            if ($tglAkhir >= $final && $tglAkhir <= $dateNow) {
+                return ['class' => 'bg-warning'];
+            }
+        },
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
@@ -39,10 +45,12 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'label' => 'Jenis',
                 'value' => function ($model) {
-                        if ($model->jenis_pks == '1') {
-                            return 'ADA';
-                        }
-                    }
+                                foreach(Yii::$app->params['jenis_pks'] as $key => $value){
+                                    if ($key == $model->jenis_pks) {
+                                        return $value;
+                                    }
+                                }
+                            }
             ],
             'judul_pks',
             'tgl_buat_pks',
@@ -50,10 +58,12 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'label' => 'Status',
                 'value' => function ($model) {
-                        if ($model->status_pks == '1') {
-                            return 'ADA';
-                        }
-                    }
+                                foreach(Yii::$app->params['status_pks'] as $key => $value){
+                                    if ($key == $model->status_pks) {
+                                        return $value;
+                                    }
+                                }
+                            }
             ],
             'tahun_pks',
             //'nama_file',
@@ -61,10 +71,12 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'label' => 'Bagian',
                 'value' => function ($model) {
-                        if ($model->bagian_pks == '1') {
-                            return 'ADA';
-                        }
-                    }
+                                foreach(Yii::$app->params['bagian_pks'] as $key => $value){
+                                    if ($key == $model->bagian_pks) {
+                                        return $value;
+                                    }
+                                }
+                            }
             ],
             //'create_at',
             //'create_by',

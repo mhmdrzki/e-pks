@@ -37,12 +37,12 @@ class DokumenPks extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['no_pks', 'nama_pks', 'jenis_pks', 'judul_pks', 'tgl_buat_pks', 'status_pks', 'tahun_pks', 'nama_file', 'bagian_pks', 'create_at', 'create_by'], 'required'],
-            [['tgl_buat_pks', 'tgl_berakhir_pks', 'create_at', 'create_by'], 'safe'],
+            [['no_pks', 'nama_pks', 'jenis_pks', 'judul_pks', 'tgl_buat_pks', 'status_pks', 'tahun_pks', 'bagian_pks', 'create_at', 'create_by'], 'required'],
+            [['tgl_buat_pks', 'tgl_berakhir_pks', 'create_at'], 'safe'],
             [['no_pks'], 'string', 'max' => 50],
             [['nama_pks', 'judul_pks'], 'string', 'max' => 150],
             [['jenis_pks', 'status_pks', 'bagian_pks'], 'string', 'max' => 2],
-            [['tahun_pks'], 'string', 'max' => 4],
+            [['tahun_pks', 'create_by'], 'string', 'max' => 4],
             [
                 ['nama_file'] ,
                 'file' ,

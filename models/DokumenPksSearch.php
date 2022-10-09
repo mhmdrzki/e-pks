@@ -40,12 +40,15 @@ class DokumenPksSearch extends DokumenPks
      */
     public function search($params)
     {
-        $query = DokumenPks::find();
+        $query = DokumenPks::find()->orderBy("(tgl_berakhir_pks >=  ADDDATE(CURDATE(), INTERVAL -4 DAY)  and tgl_berakhir_pks <= CURDATE()) DESC");
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [
+                'pageSize' => 10,
+            ],
         ]);
 
         $this->load($params);

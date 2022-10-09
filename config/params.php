@@ -5,21 +5,21 @@ return [
     'senderEmail' => 'noreply@example.com',
     'senderName' => 'Example.com mailer',
     'bsVersion' => '4',
-    'jenisPKS' => [
+    'jenis_pks' => [
         1 => 'KTP/KITAS',   
         2 => 'Paspor',
         3 => 'NPWP',
         4 => 'SIM'
     ],
 
-    'statusPKS' => [
+    'status_pks' => [
         1 => 'KTP/KITAS',   
         2 => 'Paspor',
         3 => 'NPWP',
         4 => 'SIM'
     ],
 
-    'bagianPKS' => [
+    'bagian_pks' => [
         1 => 'KTP/KITAS',   
         2 => 'Paspor',
         3 => 'NPWP',

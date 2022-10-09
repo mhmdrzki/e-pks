@@ -9,6 +9,8 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
 use Yii;
+use yii\helpers\ArrayHelper;
+use yii\filters\AccessControl;
 /**
  * DokumenPksController implements the CRUD actions for DokumenPks model.
  */
@@ -19,17 +21,17 @@ class DokumenPksController extends Controller
      */
     public function behaviors()
     {
-        return array_merge(
-            parent::behaviors(),
-            [
-                'verbs' => [
-                    'class' => VerbFilter::className(),
-                    'actions' => [
-                        'delete' => ['POST'],
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
                     ],
                 ],
             ]
-        );
+        ];
     }
 
     /**
@@ -39,6 +41,7 @@ class DokumenPksController extends Controller
      */
     public function actionIndex()
     {
+        
         $searchModel = new DokumenPksSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
@@ -91,6 +94,9 @@ class DokumenPksController extends Controller
                         $model->nama_file = $namefile;
                     }
 
+                    
+            $model->create_at = date('Y-m-d H:i:s');;
+            $model->create_by = Yii::$app->user->identity->id;
             $model->save(false);
             return $this->redirect(['view', 'id' => $model->id]);
         }
