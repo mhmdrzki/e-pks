@@ -16,7 +16,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
     <p>
-        <?= Html::a('Tambah Dokumen', ['create'], ['class' => 'btn btn-success']) ?>
+        <?php
+            if(Yii::$app->user->identity->level==1){
+                echo Html::a('Tambah Dokumen', ['create'], ['class' => 'btn btn-success']);
+            }
+        ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -29,11 +33,14 @@ $this->params['breadcrumbs'][] = $this->title;
             $tglAkhir = $model->tgl_berakhir_pks;;
             $dateNow = date("Y-m-d");
             $time = strtotime($dateNow);
-            $final = date("Y-m-d", strtotime("-4 day", $time));
+            $final = date("Y-m-d", strtotime("-3 month", $time));
             
             if ($tglAkhir >= $final && $tglAkhir <= $dateNow) {
-                return ['class' => 'bg-warning'];
+                return ['class' => 'bg-kuning'];
             }
+            // else if ($tglAkhir < $final && $tglAkhir <= $dateNow) {
+            //     return ['class' => 'bg-danger'];
+            // }
         },
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
@@ -83,11 +90,13 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'header'=>"Aksi", 
                 'class' => ActionColumn::className(),
+                
                 'urlCreator' => function ($action, DokumenPks $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
                  },
                 'headerOptions' => ['style' => 'width:90px'],
-            ],
+                'visible' => Yii::$app->user->identity->level==1,
+            ], 
             [
                 'class' => 'yii\grid\ActionColumn',
                 'template' => '{myButton}',  // the default buttons + your custom button

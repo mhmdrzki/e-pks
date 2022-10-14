@@ -8,6 +8,7 @@ use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
+use app\models\User;
 use app\models\ContactForm;
 
 class SiteController extends Controller
@@ -78,12 +79,45 @@ class SiteController extends Controller
         }
 
         $model = new LoginForm();
+        $model->load(Yii::$app->request->post());
+
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
         }
 
         $model->password = '';
-        return $this->render('login-2', [
+        return $this->render('login2', [
+            'model'     => $model,
+        ]);
+    }
+
+    public function actionRegister()
+    {
+        
+        $model = new User();
+        $request = Yii::$app->request->post();
+
+        if ($model->load(Yii::$app->request->post())) {
+            $model->password = md5($request['User']['password']);
+            $model->level = '2';
+            if($model->save()) {
+                \Yii::$app->session->setFlash('success', "Registrasi berhasil.. Silahkan login!");
+                
+                return  "<script>
+                alert('Registrasi berhasil..');
+                window.location.href='login';
+                </script>";
+            }else{
+                \Yii::$app->session->setFlash('danger', "Username telah digunakan!");
+                return  "<script>
+                alert('Opps.. Username telah digunakan!');
+                window.location.href='login';
+                </script>";
+            }
+        }
+
+        $model->password = '';
+        return $this->render('login2', [
             'model' => $model,
         ]);
     }
@@ -105,26 +139,26 @@ class SiteController extends Controller
      *
      * @return Response|string
      */
-    public function actionContact()
-    {
-        $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
-            Yii::$app->session->setFlash('contactFormSubmitted');
+    // public function actionContact()
+    // {
+    //     $model = new ContactForm();
+    //     if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
+    //         Yii::$app->session->setFlash('contactFormSubmitted');
 
-            return $this->refresh();
-        }
-        return $this->render('contact', [
-            'model' => $model,
-        ]);
-    }
+    //         return $this->refresh();
+    //     }
+    //     return $this->render('contact', [
+    //         'model' => $model,
+    //     ]);
+    // }
 
     /**
      * Displays about page.
      *
      * @return string
      */
-    public function actionAbout()
-    {
-        return $this->render('about');
-    }
+    // public function actionAbout()
+    // {
+    //     return $this->render('about');
+    // }
 }

@@ -43,8 +43,8 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['id', 'username', 'nama', 'password', 'created_at'], 'required'],
-            [['id'], 'integer'],
+            [['username', 'nama', 'password'], 'required'],
+            ['username', 'unique', 'targetClass' => '\app\models\User', 'message' => 'This username has already been taken.'],[['id'], 'integer'],
             [['created_at'], 'safe'],
             [['username',  'created_by'], 'string', 'max' => 50],
             [['nama','password'], 'string', 'max' => 255],

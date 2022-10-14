@@ -68,8 +68,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                 }
                             }
             ],
-            'create_at',
-            'create_by',
+            // 'create_at',
+            // 'create_by',
         ],
     ]) ?>
 

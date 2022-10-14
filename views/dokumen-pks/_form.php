@@ -116,6 +116,7 @@ use yii\helpers\ArrayHelper;
         </div>
         <div class="col-sm-10 ">
             <?= $form->field($model, 'nama_file')->label(false)->fileInput(['accept' => '.pdf, .doc, .docx']) ?>
+
         </div>
     </div>
 

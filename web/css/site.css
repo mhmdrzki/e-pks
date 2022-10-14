@@ -82,3 +82,7 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+
+.bg-kuning{
+    background-color: #ffc1079c!important;
+}

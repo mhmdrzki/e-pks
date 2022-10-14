@@ -48,7 +48,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => '@w
             : '<li class="nav-item">'
                 . Html::beginForm(['/site/logout'],'post')
                 . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
+                'Logout (' . Yii::$app->user->identity->nama . ')',
                 ['class' => 'btn btn-link logout ml-1 pl-0']
                 )
                 . Html::endForm()
@@ -72,7 +72,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => '@w
     <div class="container">
         <div class="row text-muted">
             <div class="col-md-6 text-center text-md-start">&copy; e-PKS <?= date('Y') ?></div>
-            <div class="col-md-6 text-center text-md-end">Powered by <a href="https://www.linkedin.com/in/mhmdrzki/">Bangkii</a></div>
+            <div class="col-md-6 text-center text-md-end">Powered by <a href="https://www.linkedin.com/in/mhmdrzki/" target="_blank">Bangkii</a></div>
         </div>
     </div>
 </footer>
