@@ -48,7 +48,7 @@ class DokumenPks extends \yii\db\ActiveRecord
                 'file' ,
                 'skipOnEmpty' => TRUE,
                 'extensions'  => 'doc, docx, pdf',
-                'maxSize'=> 1024 * 1024 * 2
+                'maxSize'=> 1024 * 1024 * 2 
                 
             ],
             [['nama_file'], 'string', 'max' => 255],
