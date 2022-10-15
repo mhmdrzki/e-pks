@@ -118,7 +118,25 @@ class DokumenPksController extends Controller
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post())){
-            $model->create_at = date('Y-m-d H:i:s');;
+            $files = UploadedFile::getInstance($model, 'nama_file');
+
+            $extensions = ['pdf','doc','docx'];
+            if(!empty($files) && $files->size !== 0){
+                if(!in_array($files->extension,$extensions)){
+                    //Rollback with error
+                    $model->addError('nama_file','Only files with these extensions are allowed: pdf, doc, docx');
+                    return $this->render('create', [
+                        'model' => $model,
+                    ]);
+                }
+            }
+                    if(!empty($files) && $files->size !== 0){
+                        $namefile = md5(date('Ymdhis')).'.'.$files->extension;
+                        $files->saveAs(Yii::$app->basePath . "/web/berkas/" . $namefile);
+                        $model->nama_file = $namefile;
+                    }
+
+            $model->create_at = date('Y-m-d H:i:s');
             $model->create_by = Yii::$app->user->identity->id;
             if ($model->save(false)) {
                 return $this->redirect(['view', 'id' => $model->id]);
