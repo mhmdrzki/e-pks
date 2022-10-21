@@ -40,7 +40,8 @@ class DokumenPks extends \yii\db\ActiveRecord
             [['no_pks', 'nama_pks', 'jenis_pks', 'judul_pks', 'tgl_buat_pks', 'status_pks', 'tahun_pks', 'bagian_pks', 'create_at', 'create_by'], 'required'],
             [['tgl_buat_pks', 'tgl_berakhir_pks', 'create_at'], 'safe'],
             [['no_pks'], 'string', 'max' => 50],
-            [['nama_pks', 'judul_pks'], 'string', 'max' => 150],
+			[['judul_pks'], 'string'],
+            [['nama_pks'], 'string', 'max' => 150],
             [['jenis_pks', 'status_pks', 'bagian_pks'], 'string', 'max' => 2],
             [['tahun_pks', 'create_by'], 'string', 'max' => 4],
             [
@@ -48,7 +49,7 @@ class DokumenPks extends \yii\db\ActiveRecord
                 'file' ,
                 'skipOnEmpty' => TRUE,
                 'extensions'  => 'doc, docx, pdf',
-                'maxSize'=> 1024 * 1024 * 2
+                'maxSize'=> 1024 * 1024 * 4
                 
             ],
             [['nama_file'], 'string', 'max' => 255],

@@ -19,7 +19,7 @@ use yii\helpers\ArrayHelper;
             <label><b>No. PKS</b></label>
         </div>
         <div class="col-sm-10 ">
-            <?= $form->field($model,'no_pks', ['options' => ['class' => 'mb-0']])->label(false)->textInput(['class'=>'form-control', 'maxlength' => 30, 'autocomplete'=>"off"]) ?>
+            <?= $form->field($model,'no_pks', ['options' => ['class' => 'mb-0']])->label(false)->textInput(['class'=>'form-control', 'autocomplete'=>"off"]) ?>
         </div>
     </div>
 
@@ -28,7 +28,7 @@ use yii\helpers\ArrayHelper;
             <label><b>Nama PKS</b></label>
         </div>
         <div class="col-sm-10 ">
-            <?= $form->field($model,'nama_pks', ['options' => ['class' => 'mb-0']])->label(false)->textInput(['class'=>'form-control', 'maxlength' => 30, 'autocomplete'=>"off"]) ?>
+            <?= $form->field($model,'nama_pks', ['options' => ['class' => 'mb-0']])->label(false)->textInput(['class'=>'form-control', 'autocomplete'=>"off"]) ?>
         </div>
     </div>
 
@@ -37,7 +37,7 @@ use yii\helpers\ArrayHelper;
             <label><b>Jenis</b></label>
         </div>
         <div class="col-sm-10 ">
-            <?= $form->field($model, 'jenis_pks')->label(false)->dropDownList(Yii::$app->params['jenis_pks'],['prompt'=>'Pilih Bagian']);?>
+            <?= $form->field($model, 'jenis_pks')->label(false)->dropDownList(Yii::$app->params['jenis_pks'],['prompt'=>'Pilih Jenis']);?>
         </div>
     </div>
 
@@ -46,7 +46,7 @@ use yii\helpers\ArrayHelper;
             <label><b>Judul PKS</b></label>
         </div>
         <div class="col-sm-10 ">
-            <?= $form->field($model,'judul_pks', ['options' => ['class' => 'mb-0']])->label(false)->textInput(['class'=>'form-control', 'maxlength' => 30, 'autocomplete'=>"off"]) ?>
+            <?= $form->field($model,'judul_pks', ['options' => ['class' => 'mb-0']])->label(false)->textInput(['class'=>'form-control',  'autocomplete'=>"off"]) ?>
         </div>
     </div>
 
@@ -88,7 +88,7 @@ use yii\helpers\ArrayHelper;
             <label><b>Status</b></label>
         </div>
         <div class="col-sm-10 ">
-            <?= $form->field($model, 'status_pks')->label(false)->dropDownList(Yii::$app->params['status_pks'],['prompt'=>'Pilih Bagian']);?>
+            <?= $form->field($model, 'status_pks')->label(false)->dropDownList(Yii::$app->params['status_pks'],['prompt'=>'Pilih Status']);?>
         </div>
     </div>
     
@@ -97,7 +97,7 @@ use yii\helpers\ArrayHelper;
             <label><b>Tahun</b></label>
         </div>
         <div class="col-sm-10 ">
-            <?= $form->field($model,'tahun_pks', ['options' => ['class' => 'mb-0']])->label(false)->textInput(['class'=>'form-control', 'maxlength' => 30, 'autocomplete'=>"off"]) ?>
+            <?= $form->field($model,'tahun_pks', ['options' => ['class' => 'mb-0']])->label(false)->textInput(['class'=>'form-control', 'maxlength' => 4, 'autocomplete'=>"off"]) ?>
         </div>
     </div>
 

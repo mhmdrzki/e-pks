@@ -122,50 +122,6 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionGantiPassword()
-    {
-        
-        $model = new User();
-        $request = Yii::$app->request->post();
-        if ($request) {
-            $password = md5($request['User']['password']);
-            $password_baru = md5($request['User']['password_baru']);
-            $konfirmasi_password = md5($request['User']['konfirmasi_password']);
-            $update=false;
-            $cek = User::find()
-                    ->andWhere(['id'=>Yii::$app->user->identity->id])
-                    ->andWhere(['username'=>Yii::$app->user->identity->username])
-                    ->andWhere(['password'=>$password])
-                    ->limit(1)
-                    ->one();
-
-            if($cek && $password_baru == $konfirmasi_password){
-                $update = \Yii::$app->db->createCommand("UPDATE ".User::tableName()." 
-                SET password='".$password_baru."'
-                WHERE id='".Yii::$app->user->identity->id."' and 
-                    username='".Yii::$app->user->identity->username."'
-                    ")
-                    ->execute();
-            }
-            if($update) {
-                return  "<script>
-                alert('Password berhasil di ubah!');
-                window.location.href='login';
-                </script>";
-            }else{
-                return  "<script>
-                alert('Opps.. Password gagal di ubah!');
-                window.location.href='login';
-                </script>";
-            }
-        }
-
-        $model->password = '';
-        return $this->render('login2', [
-            'model' => $model,
-        ]);
-    }
-
     /**
      * Logout action.
      *

@@ -6,25 +6,17 @@ return [
     'senderName' => 'Example.com mailer',
     'bsVersion' => '4',
     'jenis_pks' => [
-        1 => 'KTP/KITAS',   
-        2 => 'Paspor',
-        3 => 'NPWP',
-        4 => 'SIM'
-    ],
+        1 => 'Memorandum of Understanding (MoU)',   
+        2 => 'Memorandum of Agreement (MoA)'],
 
     'status_pks' => [
-        1 => 'KTP/KITAS',   
-        2 => 'Paspor',
-        3 => 'NPWP',
-        4 => 'SIM'
-    ],
+        1 => 'Baru',   
+        2 => 'Perpanjangan'],
 
     'bagian_pks' => [
-        1 => 'KTP/KITAS',   
-        2 => 'Paspor',
-        3 => 'NPWP',
-        4 => 'SIM'
-    ]
+        1 => 'BIDANG MEDIK & KEPERAWATAN',   
+        2 => 'BIDANG UMUM SDM DAN PENDIDIKAN',
+        3 => 'BIDANG KEUANGAN']
 
 
 ];

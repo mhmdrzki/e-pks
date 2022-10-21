@@ -3,7 +3,7 @@
 /** @var yii\web\View $this */
 use yii\helpers\Url;
 
-$this->title = 'My Yii Application';
+$this->title = 'Dashboard | e-PKS';
 ?>
 <div class="site-index">
 

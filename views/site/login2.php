@@ -30,7 +30,7 @@ use yii\bootstrap4\ActiveForm;
 		</div>
 
 		<div class="login">
-			<form action="/sistem-humas/web/site/register" method="post">
+			<form action="/e-pks/web/site/register" method="post">
 				<input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>" />
 				<label for="chk" aria-hidden="true">Sign up</label>
 				<input type="text" name="User[username]" placeholder="Username" required="">

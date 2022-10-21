@@ -86,3 +86,7 @@ a.desc:after {
 .bg-kuning{
     background-color: #ffc1079c!important;
 }
+
+.datepicker{
+	z-index:1051 !important;
+}

@@ -118,7 +118,7 @@ class DokumenPksController extends Controller
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post())){
-            $files = UploadedFile::getInstance($model, 'nama_file');
+			$files = UploadedFile::getInstance($model, 'nama_file');
 
             $extensions = ['pdf','doc','docx'];
             if(!empty($files) && $files->size !== 0){
@@ -135,8 +135,8 @@ class DokumenPksController extends Controller
                         $files->saveAs(Yii::$app->basePath . "/web/berkas/" . $namefile);
                         $model->nama_file = $namefile;
                     }
-
-            $model->create_at = date('Y-m-d H:i:s');
+					
+            $model->create_at = date('Y-m-d H:i:s');;
             $model->create_by = Yii::$app->user->identity->id;
             if ($model->save(false)) {
                 return $this->redirect(['view', 'id' => $model->id]);
